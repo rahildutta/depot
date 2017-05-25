@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<h1>Listing Products</h1>
+<table>
+  <% @products.each do |product| %>
+      <tr class ="<%=cycle('list_line_odd', 'list_line_even')%>">
+        <td><%= image_tag(product.img_url, class: 'list_image')%></td>
+        <td class="list_description" >
+          <dl>
+            <dt>Title:  <%=product.title %></dt>
+            <dt>Price:  <%=number_to_currency_br(product.price) %></dt>
+            <dd>Description:  <%= truncate(strip_tags(product.description),length: 80) %></dd>
+          </dl>
+        </td>
+        <td class="list_actions">
+          <%= link_to 'Show',product, id: "product_show", data: {product_id: product.id,product_title: product.title}, remote: true%><br/>
+          <%= link_to 'Edit', edit_product_path(product.id), id: "edit" ,data: {product_id: product.id,product_title: product.title}, remote: true%><br/>
+          <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to 'New Product', new_product_path %>
+
+<script type="application/javascript">
+     function modal_show(){
+
+         var product_title = $("#product_show").data("product-title");
+         var header = '<div class="modal-header">'+ product_title +' <button type="button" class="close" data-dismiss="modal">X</button></div>';
+         var content = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content">' + header + '<div class="modal-body"></div></div></div></div>');
+         content.modal('show');
+         //content.find('.modal-body').load('products/'+product_id);
+         return content;
+     }
+
+    $("#product_show").click(function(){
+        var product_id = $("#product_show").data("product-id");
+        content=modal_show();
+        content.find('.modal-body').load('products/'+product_id);
+    });
+
+     $("#edit").click(function(){
+         var product_id = $("#product_show").data("product-id");
+         content=modal_show();
+         content.find('.modal-body').load('products/'+product_id+'/edit');
+     });
+</script>
+

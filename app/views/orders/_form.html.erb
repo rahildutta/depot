@@ -1,0 +1,74 @@
+<%= form_for(@order) do |f| %>
+    <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+          <ul>
+            <% @order.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= button_tag "Use previous data",type: "button",data: {"toggle" => "modal", "target" => "#my-modal"} %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :address %><br>
+      <%= f.text_area :address %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :pay_type %><br>
+      <%= f.select :pay_type, Order::PAYMENT_TYPES,
+                   prompt:'Select a payment method' %>
+    </div><br>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <div class="modal fade" id="my-modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Previous Orders</h4>
+            <button type="button" class="btn btn-default" data-dismiss="modal">X</button>
+          </div>
+          <div class="modal-body">
+            <% if @orders.present? %>
+                <table width="100%">
+                  <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Pay type</th>
+                    <th></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @orders.each do |order| %>
+                      <tr>
+                        <td><%= order.name %></td>
+                        <td><%= order.address %></td>
+                        <td><%= order.email %></td>
+                        <td><%= order.pay_type %></td>
+                        <td><%= button_tag 'Use', type: 'button' %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+            <% else %>
+                <p>No previous orders found!</p>
+            <% end%>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

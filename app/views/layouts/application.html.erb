@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Books Online</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class ='<%= controller.controller_name %>'>
+<div id="banner">
+  <%= image_tag("logo.png") %>
+  <%= @page_title="Pragamatic bookshelf" %>
+</div>
+<div id="column">
+  <div id="side">
+    <div id="cart">
+      <%= render @cart if @cart.present? %>
+    </div>
+    <% if session[:user_id] %>
+        <ul>
+          <li><%= link_to "Products", products_path, {class: "l"} %></a></li>
+          <li><%= link_to "Orders",orders_path, {class: "l"} %></li>
+          <li><%= link_to "Users",users_path, {class: "l"} %></li>
+
+          <li><%= link_to "Add to cart",store_index_url, {class: "l"} %></li>
+        </ul>
+        <%= button_to 'Logout', logout_path, method: :delete %>
+    <% end %>
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>

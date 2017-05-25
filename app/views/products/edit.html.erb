@@ -1,0 +1,6 @@
+<h1>Edit Product Details</h1>
+<%= render 'form' %>
+<% unless request.xhr?%>
+<%= link_to 'Show', @products %> |
+<%= link_to 'Back', products_path %>
+<%end%>
