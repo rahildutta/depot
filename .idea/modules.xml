@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/depot.iml" filepath="$PROJECT_DIR$/.idea/depot.iml" />
+      <module fileurl="file://$USER_HOME$/Github/dockerize/.idea/dockerize.iml" filepath="$USER_HOME$/Github/dockerize/.idea/dockerize.iml" />
       <module fileurl="file://$PROJECT_DIR$/../rently/.idea/rently.iml" filepath="$PROJECT_DIR$/../rently/.idea/rently.iml" />
     </modules>
   </component>

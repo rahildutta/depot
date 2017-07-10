@@ -18,3 +18,6 @@ context "Depot login" do
      expect(page).to have_content 'Invalid user/password combination'
   end
 end
+
+
+

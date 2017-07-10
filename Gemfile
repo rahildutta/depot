@@ -15,6 +15,8 @@ gem 'capybara'
 gem 'factory_girl_rails'
 gem 'launchy', '~> 2.4', '>= 2.4.3'
 gem 'sdoc', group: :doc
+gem 'activeadmin', '~> 1.0.0.pre1'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'
@@ -25,7 +27,6 @@ end
 group :development do
   gem 'web-console'
   gem 'spring'
-  gem 'rspec-rails', '~> 3.5'
 end
 group :test do
   gem 'database_cleaner'

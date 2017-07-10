@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
   Depot::Application.routes.draw do
-    get 'admin' => 'admin#index'
+  ActiveAdmin.routes(self)
     controller :sessions do
       get 'login' => :new
       post 'login' => :create
